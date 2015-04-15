@@ -1,0 +1,12 @@
+*/bin/
+*/obj/
+[Dd]ebug/
+[Rr]elease/
+packages
+#PublishProfiles
+*.suo
+*.user
+Setup/Setup
+node_modules/
+joestrommen.com/Scripts/*.min.js*
+*.Release.Config

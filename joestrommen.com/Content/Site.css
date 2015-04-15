@@ -1,0 +1,349 @@
+﻿body {
+    /*padding-top: 50px;*/
+    margin: 0;
+    padding: 0 0 20px 0;
+    font-family: Cabin, 'Helvetica Neue', Helvetica, Arial, 'DejaVu Sans', 'Liberation Sans', Freesans, sans-serif;
+    background: #BEC1B8;
+    position: relative;
+    color: #444;
+}
+
+.hidden {
+    visibility: hidden !important;
+}
+.strong {
+    font-weight: bold;
+}
+.em {
+    font-style: italic;
+}
+.code {
+    font-family: monospace;
+}
+pre.code {
+    font-size: 0.85em;
+    margin-left: 1em;
+    overflow-x: auto;
+}
+.callout {
+    /*border: 2px solid black;*/
+    padding: 1em;
+    margin: 1em -1em;
+    text-align: center;
+    box-shadow: 0px 0px 5px 1px rgba(0, 0, 0, 0.4);
+}
+h3 {
+    font-size: 1em;
+    margin: 1em 0 0.2em 0;
+    font-style: italic;
+    /*text-align: center;*/
+    margin-left: -10px;
+}
+
+/* Responsive at 768px, 480px, 320px (rounded down to nearest 25px) */
+body {
+    font-size: 14px;
+    min-width: 650px;
+}
+.page-content {
+    width: 630px;
+}
+.header {
+    font-size: 11pt;
+    width: 100%;
+}
+.glow-box {
+    padding: 10px;
+    padding-bottom: 0;
+}
+
+.navbar {
+    width: 120px;
+    margin-right: 10px;
+    border-right: 2px solid #BEC1B8;
+    font-size: 12px;
+}
+
+.body-content {
+    width: 95vw;
+}
+
+.body-content img.float-right {
+    float: right;
+    margin: 3px;
+    max-width: 40%;
+    height: auto; /* overwritten by JS for smoother rendering */
+}
+
+@media (min-width: 475px) {
+    body {
+        font-size: 16px;
+    }
+    .glow-box {
+        padding: 10px;
+        padding-bottom: 0;
+        box-shadow: 0px 0px 15px 5px rgba(0, 0, 0, 0.4);
+    }
+    .navbar {
+        width: 138px;
+        font-size: 14px;
+    }
+
+    .body-content {
+        width: 480px;
+    }
+}
+/* Now we're at at least tablet size...add a page padding and box-shadow */
+@media (min-width: 750px) {
+    body {
+        min-width: 750px;
+    }
+    .page-content {
+        width: 700px;
+    }
+    .header {
+        font-size: 12pt;
+    }
+    .glow-box {
+        padding: 25px;
+        padding-bottom: 0;
+    }
+    .navbar {
+        width: 148px;
+        margin-right: 25px;
+    }
+    .body-content {
+        width: 525px;
+    }
+}
+
+/* Max size - 800 total; 25*3 padding; 150 nav bar,  */
+@media (min-width: 800px) {
+    body {
+        min-width: 800px;
+    }
+    .page-content {
+        width: 750px;
+    }
+    .body-content {
+        width: 575px;
+    }
+}
+
+button, submit {
+    font-family: inherit;
+    font-size: inherit;
+    color: inherit;
+}
+
+body.with-header .header {
+    display: block;
+}
+.header {
+    display: none;
+    background: #90A5B6;
+    color: white;
+    text-align: center;
+    position: absolute;
+    width: 100%;
+    height: 40px;
+}
+.header > * {
+    margin: 6px auto;
+    display: inline-block;
+}
+.header form > * {
+    vertical-align: middle;
+    display: inline-block;
+}
+.header form input[name=emailAddress] {
+    padding: 5px 2px;
+    width: 250px;
+}
+a.submit, button[type=submit] {
+    border: 2px solid #BEC1B8;
+    background: limegreen;
+    padding: 2px 15px 3px 15px;
+    cursor: pointer;
+}
+form .loader {
+    visibility: hidden;
+    margin: 0 0 1px 0;
+}
+.loader > * {
+    display: inline-block;
+    vertical-align: middle;
+}
+.submitting .loader {
+    visibility: visible;
+}
+.close-header {
+    position: absolute;
+    right: 0.25em;
+    top: 0.25em;
+    color: inherit;
+    text-decoration: none;
+    font-size: 20px;
+    font-family: monospace;
+}
+
+.spam-honeypot {
+    position: fixed;
+    left: -1000px;
+}
+
+body.with-header .outer-container {
+    top: 40px;
+}
+.outer-container {
+    position: absolute;
+    width: 100%;
+    z-index: -1;
+}
+
+.glow-box {
+    margin: 0px auto 25px;
+    background: white;
+}
+
+.navbar {
+    float: left;
+    display: inline-block;
+    padding: 0;
+    color: gray;
+    height: 300px;
+    text-transform: uppercase;
+}
+.navbar li {
+    list-style: none;
+    padding-bottom: 8px;
+}
+.navbar ul {
+    padding: 6px 0 0 10px;
+}
+.navbar ul li:before {
+    content: '- ';
+}
+.navbar a {
+    color: #90A5B6;
+    text-decoration: none;
+}
+
+.body-content {
+    display: inline-block;
+    margin: 0;
+    padding: 0;
+}
+.body-content h1 {
+    text-align: center;
+    margin: 0 1em 0.75em 1em;
+    font-size: 1.75em;
+}
+
+.footer {
+    margin-top: 150px;
+    padding: 4px;
+    font-size: 12px;
+    text-align: center;
+    border-top: 2px solid #BEC1B8;
+    color: #90A5B6;
+}
+
+div.p {
+    padding-bottom: 14px;
+}
+
+div.p ul {
+    margin: 0.25em 0 0 0;
+}
+
+div.p li {
+    margin-bottom: 0.25em;
+}
+
+.paren {
+    font-style: italic;
+    font-size: 0.8em;
+}
+
+#font-test-cabin, #font-test-monospace {
+    position: absolute;
+    left: -1000px;
+    content: 'i';
+    font-size: 48px;
+}
+#font-test-cabin {
+    font-family: Cabin, monospace;
+}
+#font-test-monospace {
+    font-family: monospace;
+}
+
+.body-content {
+    -moz-transition: transform 0.1s ease-out, opacity 0.1s ease-in;
+    -o-transition: transform 0.1s ease-out, opacity 0.1s ease-in;
+    /*-webkit-transition: -webkit-transform ease-out 0.1s, opacity 0.1s ease-in;*/
+    transition: transform 0.1s ease-out, opacity 0.1s ease-in;
+    opacity: 1;
+}
+
+.fade-in {   
+    opacity: 0;
+}
+
+/* Set width on the form input elements since they're 100% wide by default */
+input,
+select,
+textarea {
+    max-width: 280px;
+}
+
+/* styles for validation helpers */
+.field-validation-error {
+    color: #b94a48;
+}
+
+.field-validation-valid {
+    display: none;
+}
+
+input.input-validation-error {
+    border: 1px solid #b94a48;
+}
+
+input[type="checkbox"].input-validation-error {
+    border: 0 none;
+}
+
+.validation-summary-errors {
+    color: #b94a48;
+}
+
+.validation-summary-valid {
+    display: none;
+}
+
+table {
+    border-collapse: collapse;
+}
+
+tbody {
+    border: 2px solid #BEC1B8;
+}
+th {
+    text-align: left;
+    padding-left: 7px;
+}
+tbody td {
+    border-bottom: 1px solid #BEC1B8;
+    padding: 7px 50px 7px 7px;
+}
+table a {
+    text-decoration: none;
+}
+table a:hover {
+    text-decoration: underline;
+}
+tbody tr:nth-child(2n+1) {
+    background: #F5F5F4;
+}

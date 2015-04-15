@@ -1,0 +1,182 @@
+﻿@{
+    ViewBag.Title = "Two-Stage Loading";
+}
+
+<h3>Static content is the key to fast, scalable websites.</h3>
+<div class="p">
+    Data that is the same for all users across a period of time can be cached by proxies, CDNs, and browsers - drastically improving page load times and reducing application server load.
+</div>
+
+<h3>Most websites are dynamic, not static.</h3>
+<div class="p">
+    @*Data can be dynamic in two ways - per user and over time.*@
+    The vast majority of modern websites allow some form of personalization.
+    @*Websites tend to vary in how dynamic they are over time.*@
+    Wordpress blogs, E-Commerce frameworks, and even Wikipedia all allow you to login, and present a modified UI when you do so.
+    This dynamic behavior prevents HTML pages from being cacheable by proxies and CDNs.
+    @*    Even something as innocuous as using a mobile redirect introduces dynamic behavior into your pages, preventing them from being cached.*@
+</div>
+@*<div class="p">
+        And for websites that truly have no dynamic content, every major server framework will still indicate (by default, via the Cache-Control HTTP header) that it <strong>is</strong> dynamic.
+    </div>*@
+
+<h3>But how dynamic is the HTML, really?</h3>
+<div class="p">
+    For many sites, a logged-in user experiences only slight differences from an anonymous user (e.g. a toolbar in the upper right).
+    In theory, the rest of the page content could be cached for performance.
+</div>
+@*<div class="p">
+        For even the most heavily-personalized websites, the entire <span class="code">&lt;head&gt;</span> of a document is almost certainly the same for everybody.
+        And loading
+    </div>*@
+<div class="p">
+    But HTTP doesn't let us split up the HTML like that - so we must mark the entire page as un-cacheable, and we lose out on our performance.
+</div>
+<div class="p callout">
+    <strong>Two-Stage Loading</strong> is a way around this restriction - a technique to separate the dynamic and static parts of a web&nbsp;page, improving performance by allowing the static&nbsp;portions to be cached.
+</div>
+
+<h2>How does it work?</h2>
+<div class="p">
+    @*Two-stage loading requires cooperation between the server and the client.*@
+    When a standard page request is made by the browser, the server must return a static version of the page, with labeled placeholders for the dynamic content.
+    This static HTML can be cached by proxies, CDNs, and browsers.
+</div>
+<div class="p">
+    Then, an AJAX call is made to request the dynamic version of the page - again, with labeled placeholders for the dynamic content.
+    When that is complete, the dynamic data is copied into the DOM in Javascript.
+</div>
+<div class="p">
+    So in essence, there are two separate stages of the page load - one for the static version (which likely contains most of the content), and another for the dynamic portions.
+    Hence the name.
+</div>
+
+<h2>More Details</h2>
+<div class="p">
+    The description above glosses over many of the details.
+    I've outlined some of the nitty-gritty details below in an "FAQ" format.
+</div>
+<div class="p">
+    This idea and implementation are still in a very early stage, so I'd love to hear any feedback you have.
+    For the time being, let's keep this to email - contact me at <a href="#" class="email"></a>.
+    As time goes on, I'll create a more organized discussion space.
+</div>
+
+<h3>How does the server know when to serve the dynamic version of the page?</h3>
+<div class="p">
+    By the presence of a '_' (underscore) query parameter.
+    If it exists, the dynamic version should be returned.
+    This fits with how browsers request a page and how CDNs handle that request.
+</div>
+<div class="p">
+    (The parameter value doesn't matter to the server, but it should be left blank so that private caching in the browser can still work.)
+</div>
+
+<h3>How are placeholders "labelled"?</h3>
+<div class="p">
+    By a <span class="code">data-dynamic-id</span> attribute on the element.
+    This ID should be unique within a page.
+    @*    Elements with this attribute are hidden via CSS while the*@
+</div>
+<div class="p">
+    Sometimes it is difficult to add attributes to specific HTML elements (e.g. on a Wordpress site).
+    To support these scenarios, I plan to add the ability to specifying the dynamic sections via query selectors in Javascript.
+</div>
+
+<h3>How is this implemented on the client?</h3>
+<div class="p">
+    Via <a href="~/scripts/twoStage.js">twoStage.js</a>.
+    This very site is running it right now.
+    I'm in the process of creating a Github project for this and the server-side code.
+</div>
+
+<h3>How is this implemented on the server?</h3>
+<div class="p">
+    It depends on the server.
+    The biggest change required is that if the _ parameter is not present, the request cookies, user-agent, source IP, etc. should be ignored.
+    @*    This implies that the server must be able to return something meaningful when this data is not present.*@
+</div>
+<div class="p">
+    For this site, I've just implemented this manually.
+    But the safest way to handle this is to remove that data from the request as early as possible.
+    I'm working on a solution for ASP.NET MVC that will do exactly that, using an MVC filter.
+    Even better would be a reverse proxy that strips this data before it reaches the application server.
+    @*But going forward, I'm going to work on setting up an nginx reverse proxy that will "anonymize" requests without an underscore parameter and pass them to a backend.
+        This should work with anything from .NET to Wordpress to Rails.*@
+</div>
+<div class="p">
+    Note that removing cookies is a problem for pages that <em>require</em> authentication.
+    If you want to use two-stage loading for authenticated pages, you'll need to make a special effort to render a reasonable version of the page for unauthenticated requests.
+    For .NET in particular, the [Authorize] attribute will not work.
+</div>
+<div class="p">
+    The only other change required server-side is to embed data-dynamic-id attributes where appropriate.
+</div>
+
+<h3>What about DOMContentLoaded? Will that fire twice or something?</h3>
+<div class="p">
+    DOMContentLoaded will fire once, when the static version of the page has loaded.
+    It does not fire when the dynamic elements are populated.
+    This is one of the biggest challenges to integrating two-stage loading into an existing site - code that runs on DOMContentLoaded will not have access to all of the DOM.
+</div>
+<div class="p">
+    The preferred way to work around this is to use <span class="code">twoStage.onReady</span>, which accepts a selector and a callback function, which is called for elements matching that selector when they have been added to the document.
+    The callback gets invoked on DOMContentLoaded for elements in the static version of the page, and after the AJAX request is complete for elements in the dynamic version of the page.
+    Here is an example usage:
+
+    <pre class="code">
+// Update all &lt;a&gt; tags with class "email" to be mailto links to me.
+twoStage.onReady('a.email', function () {
+  // 'this' is a list of nodes that match a.email
+  for (var i = 0; i < this.length; i++) {
+    var el = this[i];
+	if (!el.innerHTML) {
+	  el.innerHTML = email;
+	}
+    el.setAttribute('href', 'mailto:joe@joestrommen.com');
+  }
+});
+</pre>
+</div>
+@*<div class="p">
+        The good news is, this is the exact same challenge faced by PJAX (pushState + AJAX) implementations such as <a href="https://github.com/defunkt/jquery-pjax">jquery-pjax</a>, <a href="https://github.com/rails/turbolinks">Turbolinks</a>, and my personal favorite, <a href="https://github.com/dieulot/instantclick">InstantClick</a>.
+    </div>
+    <div class="p">
+        Instead of doing everything when the entire <em>document</em> is ready,
+    </div>*@
+
+<h3>Won't it be jarring for the user to see the page change after it has already loaded (i.e. when the AJAX request completes)?</h3>
+<div class="p">
+    It can be, if large sections of the UI are marked as dynamic or inserting the dynamic content causes significant layout changes.
+    If this is a problem for your site, there are a few ways to mitigate it.
+</div>
+<div class="p">
+    One thing you can do is to show loading indicators while waiting for the dynamic request to complete.
+    You can trigger CSS off the body having the "two-stage-finished" class once everything has loaded.
+    I also plan to add a Javascript event.
+</div>
+<div class="p">
+    Another approach that works for "conditional" UI is to move the show/hide logic from the server into the client.
+    A common case is to have a widget that is only shown for logged-in users.
+@*    There is another approach that works well for UI that is shown only for logged-in users (or only for anonymous users).*@
+    @*If this logic lives in server code, that creates a dynamic section that must be loaded in the 2nd stage.*@
+  @*  You can remove the logic to exclude the content server-side, and move it into Javascript instead.*@
+    To help with this, you can set a client-visible cookie called something like "ShowLoggedInUI" that corresponds to the (http-only) session cookie.
+    Then leave it hidden by default and add some Javascript to un-hide it if the ShowLoggedInUI cookie is true.
+    (Just make sure not to trust this - or any client-visible cookie - for real authentication!)
+</div>
+
+<h3>What if the server returns a non-200 response for the AJAX request?</h3>
+<div class="p">
+    (todo)
+</div>
+
+<h3>What if the static version is an loaded from a stale cache, and the document structure of the AJAX response doesn't match?</h3>
+<div class="p">
+    (todo)
+</div>
+
+@*<h3>
+    <code>data-dynamic-id</code> really only works for content that <strong>changes</strong>.
+    What about content that gets added or removed?
+</h3>*@

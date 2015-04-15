@@ -1,0 +1,53 @@
+@{
+    ViewBag.Title = "Minify Javascript & CSS";
+}
+
+<div class="p">
+    To reduce file size, JavaScript and CSS can be <em>minified</em>.
+    This means that whitespace and comments are removed, and (for Javascript) scoped variables are renamed to one or two characters.
+</div>
+
+<div class="p">
+    For JavaScript files, minification can reduce the size by 50% or more.
+    The payoff depends greatly on the coding style of the JavaScript.
+    For instance, jQuery uses a lot of code comments, so minification has a huge impact - over 60%.
+</div>
+
+<div class="p">
+    Minifying CSS files is usually not quite as effective; expect a size reduction more like 10-20%.
+</div>
+
+<div class="p">
+    If you are using gzip compression for your JavaScript and CSS files (you should be!) then minification will be slightly less effective.
+</div>
+
+<div class="p">
+
+</div>
+
+<h3>Resources</h3>
+
+<div class="p">
+    There are many different tools available to minify JavaScript and CSS.
+    Here is a partial list:
+    <ul>
+        <li>Blah blah blah</li>
+    </ul>
+</div>
+
+<h2>Considerations</h2>
+
+<h3>Debugging</h3>
+<div class="p">
+    Minified JavaScript is virtually 
+</div>
+
+<h3>Licensing</h3>
+<div class="p">
+    If you are using open-source JavaScript or CSS that has a license comment embedded in the file, you should be careful with minification.
+    Using a minified version of that file without preserving the license comment is most likely a violation of the license.
+</div>
+<div class="p">
+    Many popular open-source libraries have pre-minified versions of their code that contain the license header; use this if it is available.
+    Otherwise, you can re-insert the comment into the minified version yourself.
+</div>

@@ -1,0 +1,93 @@
+
+
+<h1>Javascript Framework, Server-Side Rendering, and Web Sites vs. Applications</h1>
+
+<p>
+    There's been much discussion lately of client-side rendering vs. server-side rendering.
+
+    Tom Lane of EmberJS wrote about <a href="http://tomdale.net/2015/02/youre-missing-the-point-of-server-side-rendered-javascript-apps/">some very interesting ideas</a> that the EmberJS team is working on.
+</p>
+
+<h4>
+    I think Javascript frameworks have their place, they introduce a ton of great ideas, but 
+</h4>
+
+<h4>Non-Framework Javascript doesn't have to be spaghetti</h4>
+<div class="p">
+    The great thing about Javascript frameworks is that they force you to follow patterns and conventions in your Javascript.
+    All too often, pages start as traditional server pages, ad-hoc Javascript is added piece by piece until it's grown way out of control.
+    Then somebody thinks things through and rewrites the app using a framework, and the result is vastly improved code.
+    This is pretty much always chalked up as a success case for whatever framework was used.
+    But really, it's a success case for thinking things through and following basic software engineering principles.
+</div>
+
+<p>
+    As an industry, I think we tend to overuse client-side MVC.
+    There are lots of good reasons to avoid it (see below), and only one good reason to use it.
+    It's really only appropriate for web apps that are focused on creating content to use for functionality-rich web applications that don't have
+</p>
+
+<p>
+    So when is it appropriate to use client-side MVC?
+    I think the best way to think of this is that when a web app is focused on content creation, a client-side MVC framework might be appropriate.
+    Examples I can think of would be Trello, CMS back-ends, 
+    When a web app is focused on content consumption, it should almost always be rendered server-side.
+</p>
+
+<p>
+    Simple AJAX functionality does <em>not</em> require client-side MVC.
+    AJAX forms are not difficult.
+    AJAX navigation can be implemented quite easily with a PJAX library.
+</p>
+
+<h3>Pros &amp; Cons to Client-Side MVC Frameworks</h3>
+<div>
+    <h4>Pros</h4>
+    <ul>
+        <li>
+            Complex AJAX-y functionality is a bit easier.
+        </li>
+    </ul>
+</div>
+<div>
+    <h4>Cons</h4>
+    <ul>
+        <li>URLs must be managed manually</li>
+        <li>Page load for a first-time visitor is notably slower</li>
+        <li>Accessibility is often reduced</li>
+        <li>Frameworks add maintenance difficulty</li>
+        <li>Loading indicators require additional effort</li>
+        <li>SEO can be problematic</li>
+    </ul>
+</div>
+
+<div class="p">
+    You'll notice that the Cons are all a result of client-side MVC sidestepping the standard HTTP/HTML flow.
+    The various frameworks actually do a pretty good job of mitigating these problems, but they're competing against 20+ years of industry progress.
+    And even when these things work, they require additional effort across all stages of the software process.
+    When using server-side rendering, all of these things come for free.
+</div>
+
+<div class="two-col">
+</div>
+
+<p>
+    Here are some of the reasons why I feel this way.
+    Most of them often don't matter much of the time, but in aggregate I think they are pretty convincing.
+</p>
+
+<h4>
+    Some user-agents have limited support for modern Javascript.
+    <ul>
+        <li>Search Engine crawlers</li>
+    </ul>
+</h4>
+
+<h4>
+    SEO
+</h4>
+<div class="p">
+    Traditionally this has been the #1-with-a-bullet reason to avoid client-side MVC.
+    Then last year, Google <a href="http://googlewebmastercentral.blogspot.com/2014/05/understanding-web-pages-better.html">announcted that their web crawler is executing Javascript</a> for indexing content.
+    However, this announcement came with several large caveats - if your Javascript is "too complex" or removes content from the page (huh?)
+</div>

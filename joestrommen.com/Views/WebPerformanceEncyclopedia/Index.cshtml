@@ -1,0 +1,79 @@
+﻿@{
+    ViewBag.Title = "Web Performance Encylopedia";
+    ViewBag.Data = new[]
+        {
+            new { Name = "Minify JS/CSS", Link = "minify-js-css", Impact = 3, ImpactText = "Low", Difficulty = 4, DifficultyText = "Fairly easy" },
+            new { Name = "Inline small images", Link = "minify-text-files", Impact = 3, ImpactText = "Low", Difficulty = 4, DifficultyText = "Fairly easy" },
+            new { Name = "Static compression", Link = "minify-text-files", Impact = 3, ImpactText = "Low", Difficulty = 4, DifficultyText = "Fairly easy" },
+            new { Name = "Dynamic compression", Link = "minify-text-files", Impact = 3, ImpactText = "Low", Difficulty = 4, DifficultyText = "Fairly easy" },
+            new { Name = "Bundle JS/CSS", Link = "minify-text-files", Impact = 3, ImpactText = "Low", Difficulty = 4, DifficultyText = "Fairly easy" },
+            new { Name = "Content delivery networks (CDNs)", Link = "minify-text-files", Impact = 3, ImpactText = "Medium", Difficulty = 4, DifficultyText = "Fairly easy" },
+            new { Name = "Domain sharding", Link = "minify-text-files", Impact = 3, ImpactText = "Low", Difficulty = 4, DifficultyText = "Fairly easy" },
+            new { Name = "Non-cookie domains", Link = "minify-text-files", Impact = 3, ImpactText = "Low", Difficulty = 4, DifficultyText = "Fairly easy" },
+            new { Name = "Make HTML cacheable", Link = "minify-text-files", Impact = 3, ImpactText = "Low", Difficulty = 4, DifficultyText = "Fairly easy" },
+            new { Name = "HTTP/2", Link = "minify-text-files", Impact = 3, ImpactText = "Low", Difficulty = 4, DifficultyText = "Fairly easy" },
+            new { Name = "Link prefetching", Link = "minify-text-files", Impact = 3, ImpactText = "Low", Difficulty = 4, DifficultyText = "Fairly easy" },
+            new { Name = "Image sprites", Link = "minify-text-files", Impact = 3, ImpactText = "Low", Difficulty = 4, DifficultyText = "Fairly easy" },
+            new { Name = "Avoid CSS @import", Link = "minify-text-files", Impact = 3, ImpactText = "Low", Difficulty = 4, DifficultyText = "Fairly easy" },
+            new { Name = "Partial response flush", Link = "minify-text-files", Impact = 3, ImpactText = "Low", Difficulty = 4, DifficultyText = "Fairly easy" },
+            new { Name = "Configure cache headers", Link = "minify-text-files", Impact = 3, ImpactText = "Low", Difficulty = 4, DifficultyText = "Fairly easy" },
+            new { Name = "Caching reverse proxies", Link = "minify-text-files", Impact = 3, ImpactText = "Low", Difficulty = 4, DifficultyText = "Fairly easy" },
+            new { Name = "AJAX navigation", Link = "minify-text-files", Impact = 3, ImpactText = "Low", Difficulty = 4, DifficultyText = "Fairly easy" },
+            new { Name = "Index database queries", Link = "minify-text-files", Impact = 3, ImpactText = "Low", Difficulty = 4, DifficultyText = "Fairly easy" },
+            new { Name = "Optimize images", Link = "minify-text-files", Impact = 3, ImpactText = "Low", Difficulty = 4, DifficultyText = "Fairly easy" },
+            new { Name = "Right-size images", Link = "minify-text-files", Impact = 3, ImpactText = "Low", Difficulty = 4, DifficultyText = "Fairly easy" },
+            new { Name = "Responsive images", Link = "minify-text-files", Impact = 3, ImpactText = "Low", Difficulty = 4, DifficultyText = "Fairly easy" },
+            new { Name = "Avoid document reflows", Link = "minify-text-files", Impact = 3, ImpactText = "Low", Difficulty = 4, DifficultyText = "Fairly easy" },
+            new { Name = "Optimize fonts", Link = "minify-text-files", Impact = 3, ImpactText = "Low", Difficulty = 4, DifficultyText = "Fairly easy" },
+            new { Name = "Denormalize database tables", Link = "minify-text-files", Impact = 3, ImpactText = "Low", Difficulty = 4, DifficultyText = "Fairly easy" },
+            new { Name = "HTTP Keep-Alive", Link = "minify-text-files", Impact = 3, ImpactText = "Low", Difficulty = 4, DifficultyText = "Fairly easy" },
+            new { Name = "TLS False Start", Link = "minify-text-files", Impact = 3, ImpactText = "Low", Difficulty = 4, DifficultyText = "Fairly easy" },
+            new { Name = "Optimize SSL certificates", Link = "minify-text-files", Impact = 3, ImpactText = "Low", Difficulty = 4, DifficultyText = "Fairly easy" },
+            new { Name = "Load scripts async", Link = "minify-text-files", Impact = 3, ImpactText = "Low", Difficulty = 4, DifficultyText = "Fairly easy" },
+            new { Name = "Defer secondary content", Link = "minify-text-files", Impact = 3, ImpactText = "Low", Difficulty = 4, DifficultyText = "Fairly easy" },
+            new { Name = "Appropriate image formats", Link = "minify-text-files", Impact = 3, ImpactText = "Low", Difficulty = 4, DifficultyText = "Fairly easy" },
+            new { Name = "Disable mobile tap delay", Link = "minify-text-files", Impact = 3, ImpactText = "Low", Difficulty = 4, DifficultyText = "Fairly easy" },
+            new { Name = "Scale TCP receive window", Link = "minify-text-files", Impact = 3, ImpactText = "Low", Difficulty = 4, DifficultyText = "Fairly easy" },
+            new { Name = "Tune compression settings", Link = "minify-text-files", Impact = 3, ImpactText = "Low", Difficulty = 4, DifficultyText = "Fairly easy" },
+            new { Name = "Inline critical CSS", Link = "minify-text-files", Impact = 3, ImpactText = "Low", Difficulty = 4, DifficultyText = "Fairly easy" },
+        };
+}
+
+<div class="p">
+    A comprehensive list of techniques that can make your website load faster -
+    sorted by ease of implementation and potential impact.
+</div>
+
+<div class="p">
+    Note that potential impact is just a general guideline here - 
+    Everybody's situation is different, and what 
+</div>
+
+<div class="p">
+    Click on any of the items to get more detailed information.
+</div>
+
+<div class="p">
+    Do you know of any tips or tricks that I'm missing?
+    I'd love to hear about it - <a class="email" href="#">shoot me an email</a> or <a class="twitter" href="#">hit me up on Twitter</a>.
+</div>
+
+<table>
+    <thead>
+        <tr>
+            <th></th>
+            <th>Impact</th>
+            <th>Difficulty</th>
+        </tr>
+    </thead>
+    @foreach (var row in ViewBag.Data)
+    {
+        <tr>
+            <td>
+                <a href="/web-performance-encyclopedia/@row.Link">@row.Name</a>
+            </td>
+            <td>@row.ImpactText</td>
+            <td>@row.DifficultyText</td>
+        </tr>
+    }
+</table>
