@@ -18,7 +18,7 @@ The site uses Grunt (running under Node) to do some front-end optimizations.  To
 You'll also need to do a `npm install -g grunt-cli` if you haven't already so that `grunt` can be run from the command line.
 
 ### Non-Public Data
-There are a few things that I'm not going to commit to Github.
+There are a few things that I'm not going to commit to Github.  These are in a Web.Release.Config that is excluded via .gitignore.
 
 * MailChimpApiKey
 * MandrillApiKey
