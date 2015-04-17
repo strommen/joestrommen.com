@@ -194,7 +194,6 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\WebPerformanceEncyclopedia\Index.cshtml" />
     <Content Include="Views\Blog\javascript-mvc-frameworks.cshtml" />
-    <Content Include="Views\Home\two-stage.cshtml" />
     <Content Include="Views\WebPerformanceEncyclopedia\minify-js-css.cshtml" />
     <Content Include="Scripts\common.min.js.map" />
     <Content Include="Scripts\domUtil.min.js.map" />
