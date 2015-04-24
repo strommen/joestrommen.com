@@ -199,6 +199,8 @@
     <Content Include="Scripts\domUtil.min.js.map" />
     <Content Include="Scripts\getComputedStyle.min.js.map" />
     <Content Include="Scripts\twoStage.min.js.map" />
+    <Content Include="Views\Home\fasterweb.cshtml" />
+    <Content Include="Views\Home\two-stage.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
