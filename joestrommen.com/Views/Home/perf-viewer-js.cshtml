@@ -1,0 +1,27 @@
+﻿@{
+    ViewBag.Title = "perf-viewer.js";
+}
+
+
+<div class="p">
+    <strong><a target="_blank" href="~/public/perfViewer.js">perfViewer.js</a></strong> is a script to effortlessly display performance metrics on any page.
+    When the script is initialized, it shows a notification bar with the page load time and a link to display a waterfall chart.
+    All of this is done in JavaScript based on the HTML5 navigation and resource timings API.
+</div>
+
+<div class="p">
+    <img src="~/Content/perfViewer.png" width="944" height="374" style="max-width: 100%;" />
+</div>
+
+<h2>Integrating perfViewer</h2>
+<p>To use perfViewer.js on your website, simply add it to your page and initialize it from a window load event handler.  For example:</p>
+<pre class="code">&lt;script src=&quot;scripts/perfViewer.js&quot;&gt;&lt;/script&gt;
+&lt;script type=&quot;text/javascript&quot;&gt;
+    window.addEventListener('load', function() { perfViewer.init(); }, false);
+&lt;/script&gt;
+</pre>
+
+<h2>More info on Github</h2>
+<div class="p">
+    For more info, check out the project <a href="https://github.com/strommen/perfViewerJS">Github page</a>.
+</div>

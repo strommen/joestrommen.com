@@ -151,6 +151,7 @@
   <ItemGroup>
     <Content Include="Content\ajax-loader.gif" />
     <Content Include="Content\headshot.jpg" />
+    <Content Include="Content\perfViewer.png" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
@@ -161,6 +162,7 @@
     <Content Include="Content\cabin-partial.woff2" />
     <None Include="Properties\PublishProfiles\strommen-personal - FTP.pubxml" />
     <None Include="Properties\PublishProfiles\strommen-personal - Web Deploy.pubxml" />
+    <Content Include="public\perfViewer.js" />
     <Content Include="Scripts\3rd-party\instantclick.min.js" />
     <Content Include="Scripts\common.min.js" />
     <Content Include="Scripts\domUtil.min.js" />
@@ -201,6 +203,7 @@
     <Content Include="Scripts\twoStage.min.js.map" />
     <Content Include="Views\Home\fasterweb.cshtml" />
     <Content Include="Views\Home\two-stage.cshtml" />
+    <Content Include="Views\Home\perf-viewer-js.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
